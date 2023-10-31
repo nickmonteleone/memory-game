@@ -93,7 +93,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 300px; /* Adjust the width as needed */
+  max-width: 300px;
   align-items: center;
 }
 
