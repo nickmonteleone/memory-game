@@ -1,0 +1,111 @@
+/* font from google fonts - jost */
+@font-face {
+  font-family: 'Jost';
+  src: url('fonts/Jost-VariableFont_wght.ttf') format('truetype'),
+    url('fonts/OFL.txt') format('woff')
+}
+
+/*
+#game div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display: inline-block;
+} */
+
+/* font styling for all text */
+* {
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  line-height: normal;
+}
+
+.body-background {
+  background: #FDE2AB;
+}
+
+.header-image {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.title-background {
+  background: #29C183;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+
+.title-text {
+  color: #232323;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.section-background {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.start-box {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  align-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-dark{
+  --bs-btn-color: #29C183;
+  font-weight: 700;
+
+}
+
+.start-image {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+.start-text {
+  color: #0E4C33;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.match-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 300px; /* Adjust the width as needed */
+  align-items: center;
+}
+
+.match-option {
+  width: 80px;
+  height: 80px;
+  background-color: #0E4C33;
+  margin: 10px;
+}
+
+
+.dj-image {
+  width: 100px;
+  flex-shrink: 0;
+}
