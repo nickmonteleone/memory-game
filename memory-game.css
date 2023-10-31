@@ -5,14 +5,6 @@
     url('fonts/OFL.txt') format('woff')
 }
 
-/*
-#game div {
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  margin: 20px;
-  display: inline-block;
-} */
 
 /* font styling for all text */
 * {
@@ -25,10 +17,9 @@
   background: #FDE2AB;
 }
 
-.header-image {
+.record-image {
   width: 64px;
   height: 64px;
-  flex-shrink: 0;
 }
 
 .title-background {
@@ -77,7 +68,6 @@
 .start-image {
   width: 25px;
   height: 25px;
-  flex-shrink: 0;
 }
 
 .start-text {
@@ -102,10 +92,36 @@
   height: 80px;
   background-color: #0E4C33;
   margin: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 
 .dj-image {
   width: 100px;
-  flex-shrink: 0;
+}
+
+
+.end-image {
+  width: 200px;
+}
+
+
+.end-box {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  align-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.end-text {
+  color: #0E4C33;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
 }

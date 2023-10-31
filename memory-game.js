@@ -1,33 +1,53 @@
 "use strict";
 
+// start button event listener
+const startButton = document.getElementById("start-button");
+const startBox = document.getElementById("start-box")
+const gameBox = document.getElementById("game");
+startButton.addEventListener('click', startGame);
+
+function startGame() {
+  console.log('starting game');
+  // decide which images will be in the game
+  const imageOptions = chooseImages(14, 6);
+  console.log(`Selected images: ${imageOptions}`);
+  // shuffle the images so they are mixed for matching
+  const shuffledImages = shuffle(imageOptions);
+  console.log(`Shuffled images: ${shuffledImages}`);
+  // create cards from the shuffled images
+  createCards(shuffledImages);
+  console.log("set cards");
+  // show and hide boxes to start
+  gameBox.style.display = "flex";
+  startBox.style.display = "none"
+}
+
+function chooseImages(options, selections) {
+  let selectedImages = [];
+  for (let i = 0; i < selections; i++) {
+      let randomInt;
+      do randomInt = Math.floor(Math.random() * options) + 1;
+      while (selectedImages.includes(randomInt));
+      // add twice so there are two to match
+      selectedImages.push(randomInt, randomInt);
+  }
+  return selectedImages;
+}
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
-const COLORS = [
-  "red", "blue", "green", "orange", "purple",
-  "red", "blue", "green", "orange", "purple",
-];
-
-const colors = shuffle(COLORS);
-
-createCards(colors);
 
 
 /** Shuffle array items in-place and return shuffled array. */
 
 function shuffle(items) {
-  // This algorithm does a "perfect shuffle", where there won't be any
-  // statistical bias in the shuffle (many naive attempts to shuffle end up not
-  // be a fair shuffle). This is called the Fisher-Yates shuffle algorithm; if
-  // you're interested, you can learn about it, but it's not important.
-
+  // This algorithm does a "perfect shuffle", from starter code
   for (let i = items.length - 1; i > 0; i--) {
     // generate a random index between 0 and i
     let j = Math.floor(Math.random() * i);
     // swap item at i <-> item at j
     [items[i], items[j]] = [items[j], items[i]];
   }
-
   return items;
 }
 
@@ -37,12 +57,27 @@ function shuffle(items) {
  * - a class with the value of the color
  * - a click event listener for each card to handleCardClick
  */
-
-function createCards(colors) {
-  const gameBoard = document.getElementById("game");
-
-  for (let color of colors) {
-    // missing code here ...
+function createCards(imageNumbers) {
+  let button;
+  let recordImage;
+  let matchImage;
+  for (let i = 0; i < imageNumbers.length; i++){
+    button = document.createElement('button');
+    button.classList.add("btn", "btn-dark", "click", "match-option");
+    button.setAttribute('id', `option-${i}`);
+    button.setAttribute('image-number', imageNumbers[i]);
+    recordImage = document.createElement('img');
+    recordImage.classList.add("record-image");
+    recordImage.setAttribute('src', `images/vinyl.svg`)
+    button.appendChild(recordImage);
+    gameBox.appendChild(button);
+    // add image element for the match result, hide at start
+    matchImage = document.createElement('img');
+    matchImage.classList.add("match-option", "record-image");
+    matchImage.setAttribute('id', `result-${i}`);
+    matchImage.setAttribute('src', `game-images/${imageNumbers[i]}.jpg`);
+    matchImage.style.display = "none";
+    gameBox.appendChild(matchImage);
   }
 }
 

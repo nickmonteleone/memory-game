@@ -17,43 +17,34 @@
   <section class="title-background">
     <h1 class="title-text">
       Memory Game&nbsp;
-      <img class="header-image" src="images/vinyl.svg" alt="vinyl">
+      <img class="record-image" src="images/vinyl.svg" alt="vinyl">
     </h1>
   </section>
 
-  <section class="section-background" id="start-box">
-    <h2 class="start-box">
-      <button type="button" class="btn btn-dark" id="start-button">
+  <section class="section-background">
+    <h2 class="start-box" id="start-box">
+      <button type="button" class="btn btn-dark click" id="start-button">
         play&nbsp;
         <img class="start-image" src="images/play-pause.png" alt="vinyl">
       </button>
       <img class="dj-image" src="images/dj-deck.png" alt="dj-deck">
     </h2>
-  </section>
-
-  <section class="section-background">
-    <img class="dj-image" src="images/dj.png" alt="dj">
-    <h3 class="start-text" id="start-text">
-      Match all the records to win!
-    </h3>
-    <div class="match-box" id="game">
-      <div class="btn btn-dark match-option" id="option-1"></div>
-      <div class="btn btn-dark match-option" id="option-2"></div>
-      <div class="btn btn-dark match-option" id="option-3"></div>
-      <div class="btn btn-dark match-option" id="option-4"></div>
-      <div class="btn btn-dark match-option" id="option-5"></div>
-      <div class="btn btn-dark match-option" id="option-6"></div>
-      <div class="btn btn-dark match-option" id="option-7"></div>
-      <div class="btn btn-dark match-option" id="option-8"></div>
-      <div class="btn btn-dark match-option" id="option-9"></div>
-      <div class="btn btn-dark match-option" id="option-10"></div>
-      <div class="btn btn-dark match-option" id="option-11"></div>
-      <div class="btn btn-dark match-option" id="option-12"></div>
+    <div class="match-box" id="game" style="display:none">
+      <h3 class="start-text" id="start-text">
+        <img class="dj-image" src="images/dj.png" alt="dj">
+        Match all the records to win!
+      </h3>
+      <!-- <button class="btn btn-dark click match-option" id="option-0">
+        <img class="record-image" src="images/vinyl.svg" alt="vinyl">
+      </button>
+      <img class="match-option record-image" src="" alt="vinyl" id="result-0">-->
     </div>
-  </section>
-
-
-  <section class="section-background">
+    <div class="end-box" id="end-box" style="display:none">
+      <h3 class="end-text">
+        Rock on! Click play to give it another spin.
+      </h3>
+      <img class="end-image" src="images/celebrate.png" alt="dj">
+    </div>
   </section>
 
   <script src="memory-game.js"></script>
