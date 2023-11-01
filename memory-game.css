@@ -71,6 +71,8 @@
 }
 
 .start-text {
+  display: flex;
+  align-items: center;
   color: #0E4C33;
   font-size: 15px;
   font-style: normal;
