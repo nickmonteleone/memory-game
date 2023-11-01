@@ -27,8 +27,8 @@ function startGame() {
   }
   // decide which images will be in the game
   const imageOptions = chooseImages(IMAGE_FILES_COUNT, IMAGES_TO_MATCH);
-  // shuffle the images so they are mixed for matching
-  const shuffledImages = shuffle(imageOptions);
+  // shuffle the images (2 of each) so they are mixed for matching
+  const shuffledImages = shuffle(imageOptions.concat(imageOptions));
   // create cards from the shuffled images
   createCards(shuffledImages);
   // show and hide boxes to start
@@ -40,9 +40,10 @@ function startGame() {
 
 /** Choose images randomly from file options */
 function chooseImages(options, selections) {
+  // shuffle and slice array of options
   let selectedImages = Array.from({length: options}, (_,i) => i+1)
   selectedImages = shuffle(selectedImages).slice(0, selections);
-  return selectedImages.concat(selectedImages);
+  return selectedImages;
 }
 
 /** Shuffle array items in-place and return shuffled array. */
