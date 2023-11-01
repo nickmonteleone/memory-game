@@ -7,15 +7,12 @@ const instructBox = document.getElementById("instruct-box");
 const gameBox = document.getElementById("game");
 const endBox = document.getElementById("end-box");
 startButton.addEventListener('click', startGame);
-
 // text for showing scores
 const scoreText = document.getElementById("score-text");
-
 // constants for wait time and number of items
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const IMAGE_FILES_COUNT = 14;
 const IMAGES_TO_MATCH = 6;
-
 // initialize variables for during game
 let flippedCardIds;
 let flippedCardImages;
@@ -132,10 +129,7 @@ function flipCard(id, imageNumber) {
       flippedCardIds = [];
       flippedCardImages = [];
     }
-    else {
-      // flip cards after wait time
-      setTimeout(unFlipCards, FOUND_MATCH_WAIT_MSECS);
-    }
+    else setTimeout(unFlipCards, FOUND_MATCH_WAIT_MSECS);
   }
 }
 
