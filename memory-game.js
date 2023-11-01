@@ -38,17 +38,11 @@ function startGame() {
   endBox.style.display = "none";
 }
 
-/* choose images randomly from file options */
+/** Choose images randomly from file options */
 function chooseImages(options, selections) {
-  let selectedImages = [];
-  for (let i = 0; i < selections; i++) {
-    let randomInt;
-    do randomInt = Math.floor(Math.random() * options) + 1;
-    while (selectedImages.includes(randomInt));
-    // add twice so there are two to match
-    selectedImages.push(randomInt, randomInt);
-  }
-  return selectedImages;
+  let selectedImages = Array.from({length: options}, (_,i) => i+1)
+  selectedImages = shuffle(selectedImages).slice(0, selections);
+  return selectedImages.concat(selectedImages);
 }
 
 /** Shuffle array items in-place and return shuffled array. */
@@ -63,7 +57,7 @@ function shuffle(items) {
   return items;
 }
 
-/* make all the cards with a button and a hidden result */
+/** Make all the cards with a button and a hidden result */
 function createCards(imageNumbers) {
   let button;
   let recordImage;
@@ -100,7 +94,6 @@ function createCards(imageNumbers) {
   }
 }
 
-
 /** Flip a card face-up. */
 function flipCard(id, imageNumber) {
   // only flip if less than two cards have been flipped
@@ -132,7 +125,7 @@ function flipCard(id, imageNumber) {
   }
 }
 
-/* unflip cards by reversing visibility of image and button */
+/** unflip cards by reversing visibility of image and button */
 function unFlipCards() {
   for (let id of flippedCardIds) {
     document.getElementById(`option-${id}`).style.display = 'flex';
@@ -143,7 +136,7 @@ function unFlipCards() {
   flippedCardImages = [];
 }
 
-/* set up the game for the next play upon completion */
+/** Set up the game for the next play upon completion */
 function gameCompletion() {
   scoreText.innerText = `Your score: ${attemptsCount} attempts`;
   startBox.style.display = "flex";
