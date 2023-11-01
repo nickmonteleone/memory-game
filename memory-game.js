@@ -3,10 +3,13 @@
 // find boxes and set start button event listener
 const startButton = document.getElementById("start-button");
 const startBox = document.getElementById("start-box");
-const startText = document.getElementById("start-text");
+const instructBox = document.getElementById("instruct-box");
 const gameBox = document.getElementById("game");
 const endBox = document.getElementById("end-box");
 startButton.addEventListener('click', startGame);
+
+// text for showing scores
+const scoreText = document.getElementById("score-text");
 
 // constants for wait time and number of items
 const FOUND_MATCH_WAIT_MSECS = 1000;
@@ -17,6 +20,7 @@ const IMAGES_TO_MATCH = 6;
 let flippedCardIds;
 let flippedCardImages;
 let matchesRemaining;
+let attemptsCount;
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 function startGame() {
@@ -32,7 +36,7 @@ function startGame() {
   createCards(shuffledImages);
   // show and hide boxes to start
   gameBox.style.display = "flex";
-  startText.style.display = "flex";
+  instructBox.style.display = "flex";
   startBox.style.display = "none";
   endBox.style.display = "none";
 }
@@ -71,6 +75,8 @@ function createCards(imageNumbers) {
   flippedCardIds = [];
   flippedCardImages = [];
   matchesRemaining = IMAGES_TO_MATCH;
+  attemptsCount = 0;
+  scoreText.innerText = `Attempts: ${attemptsCount}`;
   // iterate to build elements for image options
   for (let i = 0; i < imageNumbers.length; i++) {
     // create button element and set classes/attributes
@@ -90,7 +96,7 @@ function createCards(imageNumbers) {
     gameBox.appendChild(button);
     // add image element for the match result, hide at start
     matchImage = document.createElement('img');
-    matchImage.classList.add("match-option", "record-image");
+    matchImage.classList.add("match-option", "album-image", "rounded-2");
     matchImage.setAttribute('id', `result-${i}`);
     matchImage.setAttribute('src', `game-images/${imageNumbers[i]}.jpg`);
     matchImage.style.display = "none";
@@ -116,6 +122,8 @@ function flipCard(id, imageNumber) {
   flippedCardImages.push(imageNumber);
   // once two cards flipped, wait set time and check for match
   if (flippedCardIds.length === 2) {
+    attemptsCount++;
+    scoreText.innerText = `Attempts: ${attemptsCount}`;
     if (flippedCardImages[0] == flippedCardImages[1]) {
       // subtract from matches remaining and check for victory
       matchesRemaining--;
@@ -128,7 +136,6 @@ function flipCard(id, imageNumber) {
       // flip cards after wait time
       setTimeout(unFlipCards, FOUND_MATCH_WAIT_MSECS);
     }
-
   }
 }
 
@@ -145,7 +152,8 @@ function unFlipCards() {
 
 /* set up the game for the next play upon completion */
 function gameCompletion() {
+  scoreText.innerText = `Your score: ${attemptsCount} attempts`;
   startBox.style.display = "flex";
-  startText.style.display = "none";
+  instructBox.style.display = "none";
   endBox.style.display = "flex";
 }

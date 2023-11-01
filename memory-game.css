@@ -22,6 +22,12 @@
   height: 64px;
 }
 
+.album-image {
+  /* additional px for album bc no border*/
+  width: 65px;
+  height: 65px;
+}
+
 .title-background {
   background: #29C183;
   display: flex;
@@ -70,16 +76,33 @@
   height: 25px;
 }
 
-.start-text {
-  display: flex;
-  align-items: center;
+.info-text{
   color: #0E4C33;
   font-size: 15px;
   font-style: normal;
-  font-weight: 600;
   line-height: normal;
   text-align: center;
 }
+
+.start-text {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.end-text {
+  font-weight: 600;
+}
+
+.score-text {
+  font-weight: 300;
+}
+
+.instruct-box {
+  display: flex;
+  align-items: center;
+}
+
 
 .match-box{
   display: flex;
@@ -119,11 +142,3 @@
   align-items: center;
 }
 
-.end-text {
-  color: #0E4C33;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  text-align: center;
-}
