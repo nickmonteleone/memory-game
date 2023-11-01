@@ -80,7 +80,6 @@ function createCards(imageNumbers) {
     button = document.createElement('button');
     button.classList.add("btn", "btn-dark", "click", "match-option");
     button.setAttribute('id', `option-${i}`);
-    button.setAttribute('image-number', imageNumbers[i]);
     recordImage = document.createElement('img');
     recordImage.classList.add("record-image");
     recordImage.setAttribute('src', `images/vinyl.svg`);
