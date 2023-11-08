@@ -24,8 +24,8 @@ let attemptsCount;
 
 /** Remove all children of gamebox to allow for 2nd play; no inputs/outputs */
 
-function clearGameBoxChildNodes(){
-  for (let i = 0; gameBox.childNodes.length > 0; i++){
+function clearGameBoxChildNodes() {
+  for (let i = 0; gameBox.childNodes.length > 0; i++) {
     gameBox.childNodes[0].remove();
   }
 }
@@ -63,14 +63,14 @@ function startNewMemoryGame() {
 function chooseImages(options, selections) {
 
   // shuffle and slice array of options
-  let selectedImages = Array.from({length: options}, (_,i) => i+1)
+  let selectedImages = Array.from({ length: options }, (_, i) => i + 1);
   selectedImages = shuffle(selectedImages).slice(0, selections);
 
   return selectedImages;
 }
 
 /** Shuffle array items in-place and return shuffled array.
- * Input array of items; output shuffled array.
+* Input array of items; output shuffled array.
 */
 
 function shuffle(items) {
@@ -86,13 +86,45 @@ function shuffle(items) {
   return items;
 }
 
+/** Generate inital card side with image and button
+ * Input the card index and image #; Return the button object
+ */
+
+function createFrontCardSide(i, imageNumber){
+
+   // create button element and set classes/attributes
+   const button = document.createElement('button');
+   button.classList.add("btn", "btn-dark", "click", "match-option");
+   button.setAttribute('id', `option-${i}`);
+   const recordImage = document.createElement('img');
+   recordImage.classList.add("record-image");
+   recordImage.setAttribute('src', `images/vinyl.svg`);
+
+   // add event listener for when user clicks button
+   button.addEventListener('click', function () {
+     flipCard(i, imageNumber);
+   });
+   button.appendChild(recordImage);
+
+   return button;
+}
+
+/** Generate back side of card. Input the card index and image #; Return the button object  */
+
+function createBackCardSide(i, imageNumber){
+
+  const matchImage = document.createElement('img');
+  matchImage.classList.add("match-option", "album-image", "rounded-2");
+  matchImage.setAttribute('id', `result-${i}`);
+  matchImage.setAttribute('src', `game-images/${imageNumber}.jpg`);
+  matchImage.style.display = "none";
+
+  return matchImage;
+}
+
 /** Make all the cards with a button and a hidden result */
 
 function createCards(imageNumbers) {
-
-  let button;
-  let recordImage;
-  let matchImage;
 
   // reset variables for during game
   flippedCardIds = [];
@@ -105,27 +137,10 @@ function createCards(imageNumbers) {
   for (let i = 0; i < imageNumbers.length; i++) {
 
     // create button element and set classes/attributes
-    button = document.createElement('button');
-    button.classList.add("btn", "btn-dark", "click", "match-option");
-    button.setAttribute('id', `option-${i}`);
-    recordImage = document.createElement('img');
-    recordImage.classList.add("record-image");
-    recordImage.setAttribute('src', `images/vinyl.svg`);
-
-    // add event listener for when user clicks button
-    button.addEventListener('click', function () {
-      flipCard(i, imageNumbers[i]);
-    });
-    button.appendChild(recordImage);
-    gameBox.appendChild(button);
+    gameBox.appendChild(createFrontCardSide(i, imageNumbers[i]));
 
     // add image element for the match result, hide at start
-    matchImage = document.createElement('img');
-    matchImage.classList.add("match-option", "album-image", "rounded-2");
-    matchImage.setAttribute('id', `result-${i}`);
-    matchImage.setAttribute('src', `game-images/${imageNumbers[i]}.jpg`);
-    matchImage.style.display = "none";
-    gameBox.appendChild(matchImage);
+    gameBox.appendChild(createBackCardSide(i, imageNumbers[i]));
   }
 }
 
